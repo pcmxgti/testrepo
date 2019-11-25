@@ -1,34 +1,50 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '[0-9].[0-9]+.[0-9]+'
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build:
-
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        echo repository is "${{ github.repository }}"
-        echo event repo is "${{ github.event.pull_request.head.repo.full_name }}"
-        echo actor is "${{ github.actor }}"
-        echo ref is "${{ github.ref }}"
-        echo head_ref is "${{ github.head_ref }}"
-        echo base_ref is "${{ github.base_ref }}"
-        echo event is "${{ github.event }}"
-        echo "${{ github.event.pull_request.url }}"
-        echo "${{ github.event.pull_request.fork }}"
-    - name: Run if not on a fork
+      - name: Mock Checkout
+        run: |
+          echo "checkout happens here"
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mock Test
+        run: |
+          echo "testing happens here"
+  testpublish:
+    name: Build test Distribution
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: First Step
+      run: echo "This is the first step"
+    - name: Second Step (Conditional)
       if: github.event.pull_request.head.repo.full_name == github.repository
       run: |
-        echo in local pull request.
-    - name: Run if on a fork
-      if: github.event.pull_request.head.repo.full_name != github.repository
+        echo "Conditionally echo ${{ secrets.MY_SECRET }}"
+  publish:
+    name: Build test Distribution
+    runs-on: ubuntu-latest
+    needs: testpublish
+    steps:
+    - name: First Step
+      run: echo "This is the first step"
+    - name: Second Step (Conditional)
+      if: github.ref == 'refs/heads/master' && startsWith(github.event.ref, 'refs/tags')
       run: |
-        echo in forked pull request.
+        echo "Conditionally echo ${{ secrets.MY_SECRET }}"
