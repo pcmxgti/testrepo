@@ -24,10 +24,10 @@ jobs:
         echo "${{ github.event.pull_request.url }}"
         echo "${{ github.event.pull_request.fork }}"
     - name: Run if false
-      if: github.even.pull_request.fork == false
+      if: github.event.pull_request.fork == false
       run: |
         echo in local pull request.
     - name: Run if true
-      if: github.even.pull_request.fork == true
+      if: github.event.pull_request.fork == true
       run: |
         echo in forked pull request.
