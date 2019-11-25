@@ -16,7 +16,7 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
         echo repository is "${{ github.repository }}"
-        echo event repo is "{{ github.event.pull_request.head.repo.full_name }}"
+        echo event repo is "${{ github.event.pull_request.head.repo.full_name }}"
         echo actor is "${{ github.actor }}"
         echo ref is "${{ github.ref }}"
         echo head_ref is "${{ github.head_ref }}"
