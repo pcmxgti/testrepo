@@ -16,6 +16,6 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
     - name: Run if present
-      if: startsWith('Hello world', 'pipy')
+      if: startsWith(github.repository, 'pipy')
       run: |
         echo Running this step
