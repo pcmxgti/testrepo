@@ -21,7 +21,13 @@ jobs:
         echo head_ref is "${{ github.head_ref }}"
         echo base_ref is "${{ github.base_ref }}"
         echo event is "${{ github.event }}"
-    - name: Run if present
+        echo "${{ github.event.pull_request.url }}"
+        echo "${{ github.event.pull_request.fork }}"
+    - name: Run if false
+      if: github.even.pull_request.fork == false
       run: |
-        echo ${{ github.event.pull_request.url }}
-        echo ${{ github.event.pull_request.fork }}
+        echo in local pull request.
+    - name: Run if true
+      if: github.even.pull_request.fork == true
+      run: |
+        echo in forked pull request.
