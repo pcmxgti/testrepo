@@ -16,6 +16,6 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
     - name: Run if present
-      if: startsWith('Hello world', 'He')
+      if: startsWith('Hello world', 'pipy')
       run: |
         echo Running this step
