@@ -16,6 +16,5 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
     - name: Run if present
-      if: secrets.MY_SECRET
       run: |
-        echo Running this step
+        echo ${{ github.event }}
