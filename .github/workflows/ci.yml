@@ -32,7 +32,10 @@ jobs:
     needs: test
     steps:
     - name: First Step
-      run: echo "This is the first step"
+      run: |
+        echo "repo: ${{ github.repository }}"
+        echo "pr repo: ${{ github.event.pull_request.head.repo.full_name }}"
+        echo "merge repo: ${{ github.event.pull_request.head.repo.full_name }}"
     - name: Second Step (Conditional)
       if: github.event.pull_request.head.repo.full_name == github.repository
       run: |
@@ -43,7 +46,9 @@ jobs:
     needs: testpublish
     steps:
     - name: First Step
-      run: echo "This is the first step"
+      run: |
+        echo "ref: ${{ github.ref }}"
+        echo "event ref: ${{ github.event.ref }}"
     - name: Second Step (Conditional)
       if: github.ref == 'refs/heads/master' && startsWith(github.event.ref, 'refs/tags')
       run: |
