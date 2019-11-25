@@ -18,6 +18,5 @@ jobs:
         echo head_ref is "${{ github.head_ref }}"
         echo base_ref is "${{ github.base_ref }}"
     - name: Run if present
-      if: secrets
       run: |
         echo ${{ github.event }}
