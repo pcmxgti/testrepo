@@ -16,6 +16,6 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
     - name: Run if present
-      if: startswith( github.repository, "bar")
+      if: startswith( github.repository, 'bar')
       run: |
         echo Running this step
