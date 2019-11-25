@@ -23,4 +23,5 @@ jobs:
         echo event is "${{ github.event }}"
     - name: Run if present
       run: |
-        echo ${{ github.event }}
+        echo ${{ github.event.pull_request.url }}
+        echo ${{ github.event.pull_request.fork }}
