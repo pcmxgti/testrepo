@@ -15,6 +15,9 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+        echo repository is "${{ github.repository }}"
+        echo actor is "${{ github.actor }}"
+        echo ref is ${{ github.ref }}"
         echo head_ref is "${{ github.head_ref }}"
         echo base_ref is "${{ github.base_ref }}"
     - name: Run if present
