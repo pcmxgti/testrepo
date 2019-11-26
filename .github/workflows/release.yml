@@ -9,6 +9,6 @@ jobs:
     name: Debug
     runs-on: ubuntu-latest
     steps:
-      - name: Mock Checkout
+      - name: Dump full github object
         run: |
-          echo "${{ toJSON(github.event) }}"
+          echo "${{ toJSON(github) }}"
