@@ -41,14 +41,15 @@ jobs:
         echo "Conditionally echo ${{ secrets.MY_SECRET }}"
   publish:
     name: Build Real Distribution
-    if: github.event_name == 'release' && github.event.release.target_commitish == 'master' && startsWith(github.event.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     needs: test
     steps:
     - name: First Step
       run: |
-        echo "base ref: ${{ github.event.base_ref }}"
+        echo "target: ${{ github.event.release.target_commitish }}"
         echo "event ref: ${{ github.event.ref }}"
+        echo "event name: ${{ github.event_name }}"
     - name: Second Step
+      if: github.event_name == 'release' && github.event.release.target_commitish == 'master' && startsWith(github.event.ref, 'refs/tags/')
       run: |
         echo "Conditionally echo ${{ secrets.MY_SECRET }}"
