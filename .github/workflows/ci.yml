@@ -52,6 +52,6 @@ jobs:
         echo "ref: ${{ github.ref }}"
         echo "event ref: ${{ github.event.ref }}"
     - name: Second Step (Conditional)
-      if: github.event.base_ref == 'refs/heads/master' && startsWith(github.event.ref, 'refs/tags/')
+      if: github.event.base_ref == 'refs/heads/master'
       run: |
         echo "Conditionally echo ${{ secrets.MY_SECRET }}"
