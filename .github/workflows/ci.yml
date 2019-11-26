@@ -14,13 +14,9 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+    runs-on: ubuntu-latest
     steps:
-      - name: Mock Checkout for ${{ matrix.python-version }} on ${{ matrix.operating-system }}
+      - name: Mock Checkout
         run: |
           echo "checkout happens here"
   test:
@@ -29,7 +25,7 @@ jobs:
     steps:
       - name: Mock testing
         run: |
-          echo "${{ toJSON(github)}}"
+          echo "${{ toJSON(github.event) }}"
   testpublish:
     name: Build test Distribution
     if: github.event.pull_request.head.repo.full_name == github.repository || github.event.ref == 'refs/heads/master'
@@ -38,8 +34,8 @@ jobs:
     steps:
     - name: First Step
       run: |
-        echo "repos: ${{ github.repository }} ${{ github.event.pull_request.head.repo.full_name }}"
-        echo "event ref: ${{ github.event.ref }}"
+        echo "repos: ${{ github.repository }} == ${{ github.event.pull_request.head.repo.full_name }}"
+        echo "event ref: ${{ github.event.ref }} == 'refs/heads/master'"
     - name: Second Step
       run: |
         echo "Conditionally echo ${{ secrets.MY_SECRET }}"
