@@ -49,6 +49,7 @@ jobs:
         echo "target: ${{ github.event.release.target_commitish }}"
         echo "event ref: ${{ github.event.ref }}"
         echo "event name: ${{ github.event_name }}"
+        echo "full event: ${{ toJSON(github)}}"
     - name: Second Step
       if: github.event_name == 'release' && github.event.release.target_commitish == 'master' && startsWith(github.event.ref, 'refs/tags/')
       run: |
