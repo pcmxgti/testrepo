@@ -50,7 +50,8 @@ jobs:
     steps:
     - name: First Step
       run: |
-        echo "target: ${{ github.event.base_ref }}"
+        echo "repo: ${{ github.event.repository.full_name }} == ${{ github.repository }}"
+        echo "target: ${{ github.event.base_ref }} == 'refs/heads/master'"
         echo "event ref: ${{ github.event.ref }}"
         echo "event name: ${{ github.event_name }}"
     - name: Second Step
