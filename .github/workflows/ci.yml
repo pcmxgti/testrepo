@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Mock testing
         run: |
-          echo "${{ toJSON(github.event) }}"
+          echo "testing happens here"
   testpublish:
     name: Build test Distribution
     if: github.event.pull_request.head.repo.full_name == github.repository ||
