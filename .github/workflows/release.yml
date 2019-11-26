@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mock Checkout
+        run: |
+          echo "${{ toJSON(github.event) }}"
