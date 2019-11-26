@@ -35,8 +35,8 @@ jobs:
       run: |
         echo "repo: ${{ github.repository }}"
         echo "pr repo: ${{ github.event.pull_request.head.repo.full_name }}"
-        echo "push repo: ${{ github.event.push.head.repo.full_name }}"
-        echo "event: ${{toJSON(github.event.push)}}"
+        echo "push repo: ${{ github.event.base_ref }}"
+        echo "event: ${{toJSON(github.event)}}"
     - name: Second Step (Conditional)
       if: github.event.pull_request.head.repo.full_name == github.repository || github.event.base_ref == 'refs/heads/master'
       run: |
