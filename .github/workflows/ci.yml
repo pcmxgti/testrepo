@@ -14,9 +14,13 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
     steps:
-      - name: Mock Checkout
+      - name: Mock Checkout for ${{ matrix.python-version }} on ${{ matrix.operating-system }}
         run: |
           echo "checkout happens here"
   test:
